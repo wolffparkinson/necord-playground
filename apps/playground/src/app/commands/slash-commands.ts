@@ -1,6 +1,6 @@
 import { Injectable, ValidationPipe } from '@nestjs/common';
 import { IsInt } from 'class-validator';
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageActionRowComponentBuilder } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, codeBlock, MessageActionRowComponentBuilder } from 'discord.js';
 import {  Ctx, Options, SlashCommand, SlashCommandContext, StringOption } from 'necord';
 
 export class HelloOptions {
@@ -15,6 +15,7 @@ export class SlashCommands {
   onHello(@Ctx() [interaction]:SlashCommandContext,@Options(new ValidationPipe()) options:HelloOptions){
     return interaction.reply({
       ephemeral:true,
+      content:codeBlock('JSON',JSON.stringify(options)),
       components:[
       new ActionRowBuilder<MessageActionRowComponentBuilder>()
       .addComponents(

@@ -1,6 +1,7 @@
 import { IsInt } from 'class-validator';
 import { Injectable, ValidationPipe } from '@nestjs/common';
 import { Button, ButtonContext, ComponentParam, Ctx } from 'necord';
+import { codeBlock } from 'discord.js';
 
 export class ButtonOptions {
   @IsInt()
@@ -13,7 +14,7 @@ export class Buttons {
   onHello(@Ctx() [interaction]:ButtonContext,@ComponentParam(new ValidationPipe()) params: ButtonOptions){
     return interaction.reply({
       ephemeral:true,
-      content:JSON.stringify(params)
+      content:codeBlock('JSON',JSON.stringify(params))
     })
   }
 }
