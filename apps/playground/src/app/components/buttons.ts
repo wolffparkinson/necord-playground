@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { codeBlock } from 'discord.js';
 import { Button, ButtonContext, ComponentParam, Ctx } from 'necord';
 
 export class ButtonOptions {
@@ -11,7 +12,7 @@ export class Buttons {
   onHello(@Ctx() [interaction]:ButtonContext,@ComponentParam() params: ButtonOptions){
     return interaction.reply({
       ephemeral:true,
-      content:JSON.stringify(params)
+      content:codeBlock('JSON',JSON.stringify(params))
     })
   }
 }
