@@ -1,12 +1,14 @@
-import { Injectable} from '@nestjs/common';
+import { Injectable, UseGuards} from '@nestjs/common';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, codeBlock, MessageActionRowComponentBuilder } from 'discord.js';
 import {  Ctx, Options, SlashCommand, SlashCommandContext, StringOption } from 'necord';
+import { UserGuard } from '../guards/user.guard';
 
 export class HelloOptions {
   @StringOption({name:'string',description:'some string',required:true})
   str!:string
 }
 
+@UseGuards(UserGuard)
 @Injectable()
 export class SlashCommands {
   @SlashCommand({name:'hello',description:'Hello world command'})
