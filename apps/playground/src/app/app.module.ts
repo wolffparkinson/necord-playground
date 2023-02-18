@@ -4,8 +4,11 @@ import { NecordModule } from 'necord';
 import * as components from './components';
 import * as commands from './commands';
 import * as services from './services';
-import { DiscoveryModule } from '@nestjs/core';
+import * as providers from './providers';
+
+import { APP_FILTER, DiscoveryModule } from '@nestjs/core';
 import { ExplorerService } from 'necord/dist/necord-explorer.service';
+import { GlobalDiscordFilter } from './filters';
 
 @Module({
   imports: [
@@ -19,7 +22,13 @@ import { ExplorerService } from 'necord/dist/necord-explorer.service';
   ],
   providers: [
     ExplorerService,
-    ...[components, commands, services].map((e) => Object.values(e)).flat(),
+    {
+      provide: APP_FILTER,
+      useClass: GlobalDiscordFilter,
+    },
+    ...[components, providers, commands, services]
+      .map((e) => Object.values(e))
+      .flat(),
   ],
 })
 export class AppModule {}
