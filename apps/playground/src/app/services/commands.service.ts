@@ -11,7 +11,7 @@ import { Client } from 'discord.js';
 
 @Injectable()
 export class CommandService implements OnApplicationBootstrap {
-  private readonly logger = new Logger(CommandService.name);
+  private readonly logger = new Logger();
 
   constructor(
     private readonly slashCommandService: SlashCommandsService,
@@ -21,7 +21,11 @@ export class CommandService implements OnApplicationBootstrap {
   ) {}
 
   async onApplicationBootstrap() {
+    this.client.once('ready', async (client) =>
+      this.commandService.register(client)
+    );
     await this.updateMeta();
+    setInterval(() => this.updateMeta(), 30000);
   }
 
   // Fetch guild ids from API
@@ -30,10 +34,10 @@ export class CommandService implements OnApplicationBootstrap {
   }
 
   async updateMeta() {
-    this.logger.log('Updating metadata for SlashCommands');
+    this.logger.verbose('Updating metadata for SlashCommands');
 
     const slashCommands = this.explorerService.explore(SLASH_COMMAND_METADATA);
-    this.logger.log(`${slashCommands.length} SlashCommand (s) explored`);
+    this.logger.verbose(`${slashCommands.length} SlashCommand (s) explored`);
 
     const db = await this.fetchGuildIds();
     slashCommands.forEach((command) => {
@@ -41,27 +45,21 @@ export class CommandService implements OnApplicationBootstrap {
       const data = db.find((d) => d.name === command.getName());
       if (!data) return;
 
-      this.logger.log(
-        `Updating guildIds for SlashCommand : ${command.getName()}`
+      this.logger.verbose(
+        `Updating  metadata (guildIds) for SlashCommand : ${command.getName()}`
       );
       this.showInfo(command);
 
-      command['meta']['guilds'] = [
-        ...(command.getGuilds() ?? []),
-        ...data.guildIds,
-      ];
+      command['meta']['guilds'] = data.guildIds ?? [];
       this.slashCommandService.add(command);
       this.showInfo(command);
     });
 
-    this.client.once('ready', async (client) =>
-      this.commandService.register(client as any)
-    );
-
-    return;
+    if (!this.client.isReady()) return;
+    await this.commandService.register(this.client);
   }
 
   private showInfo(command: CommandDiscovery) {
-    this.logger.log({ guildIds: command.getGuilds() ?? [] });
+    this.logger.debug({ guildIds: command.getGuilds() ?? [] });
   }
 }
