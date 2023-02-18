@@ -1,1 +1,1 @@
-export * from './commands.service';
+export * from './guild-command.service';

@@ -6,8 +6,7 @@ import * as commands from './commands';
 import * as services from './services';
 import * as providers from './providers';
 
-import { APP_FILTER, DiscoveryModule } from '@nestjs/core';
-import { ExplorerService } from 'necord/dist/necord-explorer.service';
+import { APP_FILTER } from '@nestjs/core';
 import { GlobalDiscordFilter } from './filters';
 
 @Module({
@@ -18,10 +17,8 @@ import { GlobalDiscordFilter } from './filters';
       prefix: '.',
       skipRegistration: true,
     }),
-    DiscoveryModule,
   ],
   providers: [
-    ExplorerService,
     {
       provide: APP_FILTER,
       useClass: GlobalDiscordFilter,

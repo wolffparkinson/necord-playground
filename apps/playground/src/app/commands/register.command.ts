@@ -51,7 +51,10 @@ export class RegisterCommand {
     @Ctx() [i]: SlashCommandContext,
     @Options() { guildId, name }: RegisterOptions
   ) {
-    const result = await this.guildCommandService.register(name, guildId);
+    const result = await this.guildCommandService.registerCommand(
+      name,
+      guildId
+    );
     return i.editReply({
       embeds: [
         new EmbedBuilder()
