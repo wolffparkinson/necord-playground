@@ -8,7 +8,7 @@ import * as commands from './commands';
 @Module({
   imports: [
     NecordModule.forRoot({
-      intents: ['Guilds', 'GuildMessages', 'MessageContent'],
+      intents: ['Guilds'],
       token:process.env['DISCORD_TOKEN'],
       prefix: '.',
     }),
