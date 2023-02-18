@@ -17,9 +17,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    outputs:
-      build-exists: ${{ steps.build_exists.outputs.files_exists }}
-
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
