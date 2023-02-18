@@ -29,6 +29,7 @@
     "@nrwl/linter": "14.7.5",
     "@nrwl/nest": "14.7.5",
     "@nrwl/node": "14.7.5",
+    "@nrwl/nx-cloud": "^15.0.3",
     "@nrwl/workspace": "14.7.5",
     "@types/jest": "28.1.1",
     "@types/node": "16.11.7",

@@ -1,0 +1,60 @@
+name: Build
+
+on:
+  push:
+    paths-ignore:
+      - '!**/*.md'
+
+  pull_request:
+    paths-ignore:
+      - '!**/*.md'
+
+  workflow_dispatch:
+
+env:
+  NODE_ENV: production
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    outputs:
+      build-exists: ${{ steps.build_exists.outputs.files_exists }}
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.8.0
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+          cache: pnpm
+
+      - name: Get pnpm store directory
+        id: pnpm-store
+        run: |
+          echo "::set-output name=store_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        id: pnpm-cache
+        with:
+          path: ${{ steps.pnpm-store.outputs.store_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_ENV: development
+
+      - name: Build app
+        run: pnpm nx build --prod

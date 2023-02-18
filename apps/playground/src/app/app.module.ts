@@ -9,10 +9,12 @@ import * as commands from './commands';
   imports: [
     NecordModule.forRoot({
       intents: ['Guilds'],
-      token:process.env['DISCORD_TOKEN'],
+      token: process.env['DISCORD_TOKEN'],
       prefix: '.',
     }),
   ],
-  providers: [...[events,components,commands].map(e=>Object.values(e)).flat()],
+  providers: [
+    ...[events, components, commands].map((e) => Object.values(e)).flat(),
+  ],
 })
 export class AppModule {}
