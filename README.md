@@ -1,31 +1,39 @@
 # Necord Playground
 
+> Repository of necord examples for quick prototyping and testing
+
 This project was generated using [Nx](https://nx.dev).
 
-### Installation
+### Prequisites
 
-- Clone repo
-- Install dependencies
+- [git](https://git-scm.com/)
+- [NodeJS](https://nodejs.org/en/) v16+
+- [pnpm](https://pnpm.io/installation) v7+ : `npm i -g pnpm`
+
+### Usage
+
+- Fork this repository
+- Switch to `main` branch
+- Create a new branch from `main`
+  ```shell
+  git switch main
+  git switch -c feat/new-example
+  ```
+- Install depedencies
   ```shell
   pnpm i --frozen-lockfile
   ```
-- Start playground
+- Update environment variables
+  ```shell
+  cp .env.example .env
+  ```
+- Start playground in dev mode
   ```shell
   pnpm start playground
   ```
-
-### Contributing
-
-- Fork this repository
-- Switch to `base` branch
-- Create a branch from `base`
-  ```shell
-  git switch base
-  git switch -c feat/new-example
-  ```
 - Code your heart out
-- Document your changes in [Implementation](#Implementations)
-- Commit, push your branch
+- Document your changes under [Features](#Features)
+- Commit and push your branch
 - Submit a PR to upstream
 
 ### Implementations
