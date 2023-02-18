@@ -8,7 +8,10 @@ This project was generated using [Nx](https://nx.dev).
 
 - [git](https://git-scm.com/)
 - [NodeJS](https://nodejs.org/en/) v16+
-- [pnpm](https://pnpm.io/installation) v7+ : `npm i -g pnpm`
+- [pnpm](https://pnpm.io/installation) v7+
+  ```shell
+  npm i -g pnpm
+  ```
 
 ### Usage
 
