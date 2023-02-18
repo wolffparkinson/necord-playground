@@ -25,7 +25,7 @@ export class CommandService implements OnApplicationBootstrap {
       this.commandService.register(client)
     );
     await this.updateMeta();
-    setInterval(() => this.updateMeta(), 30000);
+    setInterval(() => this.updateMeta(), 60000);
   }
 
   // Fetch guild ids from API
