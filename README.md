@@ -1,8 +1,10 @@
-# Necord Playground
+## Necord Playground
 
-> Repository of necord examples for quick prototyping and testing
+Collection of <a href="https://necord.org/">Necord</a> samples for quick prototyping and testing stuff.
 
-This project was generated using [Nx](https://nx.dev).
+> This project was generated using [Nx](https://nx.dev).
+
+![Build](https://github.com/wolffparkinson/necord-playground/actions/workflows/build.yml/badge.svg)
 
 ### Prequisites
 
