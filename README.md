@@ -18,19 +18,21 @@ Collection of <a href="https://necord.org/">Necord</a> samples for quick prototy
 ### Usage
 
 - Fork this repository
-- Switch to `main` branch
-- Create a new branch from `main`
+- Switch to branch you want to work upon. Use `main` branch to develop new example.
   ```shell
-  git switch main
-  git switch -c feat/new-example
+  git switch <branch>
   ```
-- Install depedencies
+- Create a new branch
   ```shell
-  pnpm i --frozen-lockfile
+  git switch -c feat/new-example
   ```
 - Update environment variables
   ```shell
   cp .env.example .env
+  ```
+- Install depedencies
+  ```shell
+  pnpm i --frozen-lockfile
   ```
 - Start playground in dev mode
   ```shell
