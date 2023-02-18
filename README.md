@@ -4,7 +4,7 @@ Collection of <a href="https://necord.org/">Necord</a> samples for quick prototy
 
 > This project was generated using [Nx](https://nx.dev).
 
-![Build](https://github.com/wolffparkinson/necord-playground/actions/workflows/build.yml/badge.svg)
+![dynamic-guilds](https://github.com/wolffparkinson/necord-playground/actions/workflows/build.yml/badge.svg?branch=dynamic-guilds)
 
 ### Prequisites
 
@@ -18,19 +18,21 @@ Collection of <a href="https://necord.org/">Necord</a> samples for quick prototy
 ### Usage
 
 - Fork this repository
-- Switch to `main` branch
-- Create a new branch from `main`
+- Switch to branch you want to work upon. Use `main` branch to develop new example.
   ```shell
-  git switch main
-  git switch -c feat/new-example
+  git switch <branch>
   ```
-- Install depedencies
+- Create a new branch
   ```shell
-  pnpm i --frozen-lockfile
+  git switch -c feat/new-example
   ```
 - Update environment variables
   ```shell
   cp .env.example .env
+  ```
+- Install depedencies
+  ```shell
+  pnpm i --frozen-lockfile
   ```
 - Start playground in dev mode
   ```shell
@@ -41,10 +43,9 @@ Collection of <a href="https://necord.org/">Necord</a> samples for quick prototy
 - Commit and push your branch
 - Submit a PR to upstream
 
-### Implementations
+### Features
 
 - `/ping` : Replies with pong
-
   - available globally across all guilds
 
 - `/dynamic` : Replies with `I am so dynamic !! 😎` message
