@@ -29,7 +29,8 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "playground:build"
+        "buildTarget": "playground:build",
+        "inspect": false
       },
       "configurations": {
         "production": {
